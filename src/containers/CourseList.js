@@ -8,6 +8,21 @@ import ModuleList from "./ModuleList"
 class CourseList extends React.Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            course: {tittle: '', id: ''},
+
+
+
+            courses: [
+                {title: 'Couese 1 - jQuery', id: 123},
+                {title: 'Couese 2 - React', id: 234},
+                {title: 'Couese 3 - Redux', id: 345},
+                {title: 'Couese 4 - Angular', id: 456},
+                {title: 'Couese 5 - Node.js', id: 567},
+                {title: 'Couese 6 - MongoDB', id: 678},]
+        };
+
         this.courseService = CourseServiceClient.instance;
         this.titleChanged = this.titleChanged.bind(this);
         this.createCourse = this.createCourse.bind(this);
@@ -32,7 +47,7 @@ class CourseList extends React.Component {
         let courses = null;
         if (this.state) {
             courses = this.state.courses.map(
-                (course) =>{
+                (course) => {
                     return <CourseRow key={course.id} course={course}
                                       delete={this.deleteCourse}/>
                 });
@@ -76,15 +91,10 @@ class CourseList extends React.Component {
         return (
             <div>
                 <h2>Course List</h2>
-                <div>
-                    <h3>Course {this.state.courseId}</h3>
-                    <ModuleList courseId={this.state.courseId}/>
-                </div>
+
                 <table className="table">
                     <thead>
-                    <tr>
-                        <th>Title</th>
-                    </tr>
+
                     <tr>
                         <th><input onChange={this.titleChanged}
                                    className="form-control"
@@ -98,6 +108,9 @@ class CourseList extends React.Component {
                         </th>
                     </tr>
 
+                    <tr>
+                        <th>Title</th>
+                    </tr>
 
 
                     </thead>
@@ -107,6 +120,7 @@ class CourseList extends React.Component {
 
                     </tbody>
                 </table>
+
             </div>
 
 

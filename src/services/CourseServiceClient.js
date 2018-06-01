@@ -19,6 +19,12 @@ class CourseServiceClient {
                 return response.json();
             });
     }
+    findCourseById(){
+
+    }
+    updateCourse(){
+
+    }
     createCourse(course) {
         return fetch(COURSE_API_URL, {
             body: JSON.stringify(course),

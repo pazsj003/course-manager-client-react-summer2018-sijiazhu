@@ -2,7 +2,10 @@ import React from 'react';
 import ModuleListItem from '../components/ModuleListItem';
 
 import ModuleService from '../services/ModuleService';
-
+import ModuleEditor from './ModuleEditor';
+import '../../node_modules/bootstrap/dist/css/bootstrap.css';
+import '../../node_modules/font-awesome/css/font-awesome.min.css';
+import {BrowserRouter as Router, Route} from 'react-router-dom'
 
 class ModuleList extends React.Component {
     constructor(props) {
@@ -11,7 +14,7 @@ class ModuleList extends React.Component {
             courseId: '',
 
 
-            module: {title: ''},
+            module: {title: '',id:''},
             modules: [
                 {title: 'Module 1 - jQuery', id: 123},
                 {title: 'Module 2 - React', id: 234},
@@ -21,32 +24,38 @@ class ModuleList extends React.Component {
                 {title: 'Module 6 - MongoDB', id: 678},]
         };
         this.titleChanged = this.titleChanged.bind(this);
-        this.createModule= this.createModule.bind(this);
+        this.createModule = this.createModule.bind(this);
 
 
         this.setCourseId = this.setCourseId.bind(this);
         this.deleteModule = this.deleteModule.bind(this);
 
-        this.ModuleService= ModuleService.instance;
+        this.moduleService = ModuleService.instance;
 
     }
+
     findAllModulesForCourse(courseId) {
         this.moduleService
             .findAllModulesForCourse(courseId)
-            .then((modules) => {this.setModules(modules)});
+            .then((modules) => {
+                this.setModules(modules)
+            });
     }
 
-    setCourseId(courseId){
+    setCourseId(courseId) {
         this.setState({courseId: courseId});
     }
+
     componentDidMount() {
         this.setCourseId(this.props.courseId);
     }
-    componentWillReceiveProps(newProps){
+
+    componentWillReceiveProps(newProps) {
         this.setCourseId(newProps.courseId);
         this.findAllModulesForCourse(newProps.courseId);
 
     }
+
     setModules(modules) {
         this.setState({modules: modules})
     }
@@ -57,8 +66,9 @@ class ModuleList extends React.Component {
         this.setState({module: {title: event.target.value}});
 
     }
+
     createModule() {
-        this.ModuleService
+        this.moduleService
             .createModule(
                 this.state.courseId,
                 this.state.module)
@@ -85,19 +95,32 @@ class ModuleList extends React.Component {
 
     renderListOfModules() {
         let modules = this.state.modules
-            .map( (module)=> {
+            .map((module) => {
                 return <ModuleListItem
-                    title={module.title} key={module.id}
-                    delete={this.deleteModule}/>
+                    title={module.title}
+                    key={module.id}
+                    delete={this.deleteModule}
+                    module={module}
+
+                />
             });
-        return  <ul>{modules}</ul>;
+        return <ul>{modules}</ul>;
     }
 
 
     render() {
         return (
-            <div>
-                <h3>Module List for course:{this.state.courseId}</h3>
+            <Router>
+            <div className="row">
+                <div className="col-4">
+                    <h3>Module List for course:{this.state.courseId}</h3>
+                </div>
+                <div className="col-8">
+                    <Route path="/course/:courseId/module/:moduleId"
+                           component={ModuleEditor}/>
+
+                </div>
+
                 <div className="container-fluid">
                     <input className="form-control"
                            onChange={this.titleChanged}
@@ -111,7 +134,10 @@ class ModuleList extends React.Component {
                         {this.renderListOfModules()}
                     </ul>
                 </div>
+
+
             </div>
+            </Router>
         )
 
     }

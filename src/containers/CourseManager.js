@@ -17,10 +17,10 @@ class CourseManger extends Component {
                     <h1>Course Manger</h1>
                     {/*<CourseList/>*/}
 
-                    <Route path="/course/list"
+                    <Route path="/courses"
                            component={CourseList}>
                     </Route>
-                    <Route path="/course/:courseId/edit"
+                    <Route path="/course/:courseId"
                            component={CourseEditor}>
                     </Route>
 
