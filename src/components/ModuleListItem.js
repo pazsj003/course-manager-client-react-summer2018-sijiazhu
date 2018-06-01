@@ -15,6 +15,11 @@ export default class ModuleListItem
                 <i className="fa fa-trash"></i>
                 <i className="fa fa-pencil"></i>
                   </span>
+                <button onClick={() =>
+                {this.props.delete
+                (this.props.module.id)}}>
+                    DELETE</button>
+
             </li>
         );
     }
