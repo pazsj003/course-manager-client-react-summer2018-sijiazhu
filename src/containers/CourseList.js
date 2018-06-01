@@ -1,12 +1,12 @@
 import React from 'react';
-import CourseService from "../services/CourseService"
+import CourseServiceClient from "../services/CourseServiceClient"
 import CourseRow from "../components/CourseRow";
 import CourseEditor from "./CourseEditor";
 
 class CourseList extends React.Component {
     constructor() {
         super();
-        this.courseService = CourseService.instance;
+        this.courseService = CourseServiceClient.instance;
         this.titleChanged = this.titleChanged.bind(this);
         this.createCourse = this.createCourse.bind(this);
         this.deleteCourse = this.deleteCourse.bind(this);
