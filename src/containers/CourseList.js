@@ -4,13 +4,12 @@ import CourseRow from "../components/CourseRow";
 import CourseEditor from "./CourseEditor";
 
 class CourseList extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.courseService = CourseServiceClient.instance;
         this.titleChanged = this.titleChanged.bind(this);
         this.createCourse = this.createCourse.bind(this);
         this.deleteCourse = this.deleteCourse.bind(this);
-
 
 
     }
@@ -31,11 +30,10 @@ class CourseList extends React.Component {
         let courses = null;
         if (this.state) {
             courses = this.state.courses.map(
-                function (course) {
+                (course) =>{
                     return <CourseRow key={course.id} course={course}
                                       delete={this.deleteCourse}/>
-                }
-            )
+                });
         }
 
         return (
@@ -61,10 +59,14 @@ class CourseList extends React.Component {
 
 
     }
-    deleteCourse(courseId){
+
+    deleteCourse(courseId) {
         console.log('delete ' + courseId);
         this.courseService
-            .deleteCourse(courseId);
+            .deleteCourse(courseId)
+            .then(() => {
+                this.findAllCourses();
+            });
 
     }
 
@@ -89,15 +91,7 @@ class CourseList extends React.Component {
                             </button>
                         </th>
                     </tr>
-                    <tr>
-                        <td>{this.props.course.title}</td>
-                        <td><button
-                            onClick={() =>
-                            {this.props.delete(this.props.course.id)}}>
-                            Delete
-                        </button>
-                        </td>
-                    </tr>
+
 
 
                     </thead>
