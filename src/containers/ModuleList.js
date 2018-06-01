@@ -1,7 +1,7 @@
 import React from 'react';
 import ModuleListItem from '../components/ModuleListItem';
 
-import ModuleService from '../services/ModuleService';
+import ModuleServiceClient from '../services/ModuleServiceClient';
 import ModuleEditor from './ModuleEditor';
 import '../../node_modules/bootstrap/dist/css/bootstrap.css';
 import '../../node_modules/font-awesome/css/font-awesome.min.css';
@@ -30,7 +30,7 @@ class ModuleList extends React.Component {
         this.setCourseId = this.setCourseId.bind(this);
         this.deleteModule = this.deleteModule.bind(this);
 
-        this.moduleService = ModuleService.instance;
+        this.moduleService = ModuleServiceClient.instance;
 
     }
 
