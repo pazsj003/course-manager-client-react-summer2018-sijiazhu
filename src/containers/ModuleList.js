@@ -9,7 +9,7 @@ import {BrowserRouter as Router, Route} from 'react-router-dom'
 
 class ModuleList extends React.Component {
     constructor(props) {
-        super();
+        super(props);
         this.state = {
             courseId: '',
 

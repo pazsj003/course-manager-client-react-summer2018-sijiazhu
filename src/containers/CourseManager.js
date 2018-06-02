@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 
 import CourseCard from '../components/CourseCard'
 import ModuleList from './ModuleList'
+import ModuleEditor from './ModuleEditor'
 import LessonTabs from './LessonTabs'
 import CourseEditor from './CourseEditor'
 import CourseList from './CourseList'
@@ -22,6 +23,9 @@ class CourseManger extends Component {
                     </Route>
                     <Route path="/course/:courseId"
                            component={CourseEditor}>
+                    </Route>
+                    <Route path="/course/:courseId/module/:moduleId"
+                           component={ModuleEditor}>
                     </Route>
 
                 </div>
