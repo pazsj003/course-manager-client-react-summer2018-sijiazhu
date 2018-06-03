@@ -14,16 +14,16 @@ class CourseManger extends Component {
         return (
             <Router>
                 <div className="container-fluid">
-                    <nav className="navbar navbar-expand-sm bg-dark navbar-dark">
-                    <Link className="navbar-brand" to={`/courses/`}>
-                        Course Manger
-                    {/*<h3>Course Manger</h3>*/}
-                    </Link>
-                        </nav>
-                    <Route path="/courses"
+                    {/*<nav className="navbar navbar-expand-sm bg-dark navbar-dark">*/}
+                    {/*<Link className="navbar-brand" to={`/courses/`}>*/}
+                        {/*Course Manger*/}
+                    {/*/!*<h3>Course Manger</h3>*!/*/}
+                    {/*</Link>*/}
+                        {/*</nav>*/}
+                    <Route exact path="/courses"
                            component={CourseList}>
                     </Route>
-                    <Route  path="/course/:courseId"
+                    <Route exact path="/course/:courseId"
                                     component={CourseEditor}>
                 </Route>
                     {/*<Route path="/course/:courseId/module"*/}

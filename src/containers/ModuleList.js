@@ -119,6 +119,12 @@ class ModuleList extends React.Component {
                 <div className="col-3">
 
                 <div >
+
+
+                    <ul className="list-group-item">
+                        {this.renderListOfModules()}
+                    </ul>
+
                     <input className="form-control"
                            onChange={this.titleChanged}
                            placeholder="title"/>
@@ -127,9 +133,6 @@ class ModuleList extends React.Component {
                         <i className="fa fa-plus"></i>
                     </button>
 
-                    <ul className="list-group-item">
-                        {this.renderListOfModules()}
-                    </ul>
                 </div>
                     </div>
                 <div className="col-8">

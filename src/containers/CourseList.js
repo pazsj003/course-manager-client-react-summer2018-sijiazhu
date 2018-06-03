@@ -95,7 +95,7 @@ class CourseList extends React.Component {
             <div>
                 <h5>Course List</h5>
              <div>
-                <Route path="/course/:courseId"
+                <Route exact path="/course/:courseId"
                 component={CourseEditor}>
                 </Route>
 

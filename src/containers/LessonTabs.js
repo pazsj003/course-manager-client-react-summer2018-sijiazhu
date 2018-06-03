@@ -108,7 +108,7 @@ export default class LessonTabs
                     title={Lesson.title}
                     key={Lesson.id}
                     courseId={this.props.courseId}
-                    delete={this.deleteModule}
+                    delete={this.deleteLesson}
                     Lesson={Lesson}
 
                 />
@@ -122,22 +122,20 @@ export default class LessonTabs
             <div>
                 <div>
                     <input onChange={this.titleChanged}
-                               className="form-control"
-                               id="titleFld"
-                               placeholder="Lesson one"/>
+                           className="form-control"
+                           id="titleFld"
+                           placeholder="Lesson one"/>
 
-                        <button onClick={this.CreateLesson}
-                                className="btn btn-primary">Add
+                    <button onClick={this.CreateLesson}
+                            className="btn btn-primary">Add
 
-                        </button>
-
+                    </button>
 
 
                 </div>
 
                 <ul className="nav nav-tabs">
                     {this.renderListOfLessons()}
-
 
 
                 </ul>

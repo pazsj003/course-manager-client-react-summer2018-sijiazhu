@@ -1,6 +1,7 @@
 import React from 'react';
 import LessonTabs from "./LessonTabs";
 import {BrowserRouter as Router, Route} from 'react-router-dom'
+import ModuleServiceClient from "../services/ModuleServiceClient";
 
 export default class ModuleEditor
     extends React.Component {
@@ -10,9 +11,12 @@ export default class ModuleEditor
             this.setCourseId.bind(this);
         this.setModuleId =
             this.setModuleId.bind(this);
+        this.moduleService = ModuleServiceClient.instance;
         this.state = {
-            courseId: '', moduleId: ''
+            courseId: '', moduleId: '',
+            title:'',
         };
+
     }
 
 
@@ -21,10 +25,24 @@ export default class ModuleEditor
         ({courseId: courseId});
     }
 
+
     setModuleId(moduleId) {
         this.setState
         ({moduleId: moduleId});
+        this.renderModule(moduleId);
     }
+    findModuleById(moduleId){
+        return  this.moduleService
+            .findModuleById(moduleId)
+
+    }
+    renderModule(moduleId){
+        this.findModuleById(moduleId).then((module)=>{
+            this.setState({title: module.title});
+        });
+
+    }
+
 
     componentDidMount() {
         this.setCourseId(
@@ -46,22 +64,19 @@ export default class ModuleEditor
     render() {
         return (
 
-            <div className="row">
+            <div>
                 {/*<div>*/}
 
-                    {/*</div>*/}
+                {/*</div>*/}
                 {/*<div className="col-3">*/}
-                    {/*<Route path="/course/:courseId/module/:moduleId/lesson/:lessonId" component={LessonTabs}/>*/}
-
-
-
+                {/*<Route path="/course/:courseId/module/:moduleId/lesson/:lessonId" component={LessonTabs}/>*/}
 
 
                 {/*</div>*/}
-                <div >
-                    <h5>Module Editor {this.state.moduleId}</h5>
+                <div>
+                    <h5>{this.state.title}</h5>
                     <LessonTabs courseId={this.state.courseId}
-                                moduleId ={this.state.moduleId}
+                                moduleId={this.state.moduleId}
                     />
 
                 </div>

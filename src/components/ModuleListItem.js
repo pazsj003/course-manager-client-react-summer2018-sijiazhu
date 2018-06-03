@@ -1,9 +1,10 @@
 import React from 'react';
 
-import {Link,Route} from 'react-router-dom'
+import {Link, Route} from 'react-router-dom'
 import '../../node_modules/bootstrap/dist/css/bootstrap.css';
 import ModuleEditor from "../containers/ModuleEditor";
 import '../../node_modules/font-awesome/css/font-awesome.min.css';
+
 export default class ModuleListItem
     extends React.Component {
     constructor(props) {
@@ -13,19 +14,19 @@ export default class ModuleListItem
     render() {
         return (
 
-        <div className="row">
+            <div className="row">
 
-            <div >
+                <div>
 
-                <Link  className="navbar-brand"  to={`/course/${this.props.courseId}/module/${this.props.module.id}`}>
-                    <li className="nav-item">
-                        {this.props.module.title}
-                    </li>
+                    <Link className="navbar-brand" to={`/course/${this.props.courseId}/module/${this.props.module.id}`}>
+                        <li className="nav-item">
+                            {this.props.module.title}
+                        </li>
 
-                </Link>
+                    </Link>
 
 
-                <span  className="float-right">
+                    <span className="float-right">
                 <i className="fa fa-close" onClick={() => {
                     this.props.delete
                     (this.props.module.id)
@@ -34,8 +35,7 @@ export default class ModuleListItem
                   </span>
 
 
-
-</div>
+                </div>
 
             </div>
         );

@@ -26,13 +26,13 @@ export default class LessonListItem
                 </Link>
 
 
-                {/*<span  className="float-right">*/}
-                {/*<i className="fa fa-close" onClick={() => {*/}
-                    {/*this.props.delete*/}
-                    {/*(this.props.module.id)*/}
-                {/*}}></i>*/}
-                {/*<i className="fa fa-pencil"></i>*/}
-                  {/*</span>*/}
+                <span  className="float-right">
+                <i className="fa fa-close" onClick={() => {
+                    this.props.delete
+                    (this.props.Lesson.id)
+                }}></i>
+                <i className="fa fa-pencil"></i>
+                  </span>
 
 
 
