@@ -12,7 +12,7 @@ class LessonServiceClient {
     }
     static get instance() {
         if(!this[_singleton])
-            this[_singleton] = new CourseServiceClient(_singleton);
+            this[_singleton] = new LessonServiceClient(_singleton);
         return this[_singleton]
     }
 
