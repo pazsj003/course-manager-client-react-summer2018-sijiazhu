@@ -139,6 +139,9 @@ export default class LessonTabs
 
 
                 </ul>
+                <Route path="/course/:courseId/module/:moduleId/lesson/:lessonId"
+                component={TopicList}>
+                </Route>
             </div>
 
         );
