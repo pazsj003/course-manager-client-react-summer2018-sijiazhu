@@ -1,12 +1,13 @@
 import React from 'react'
-import TopicsServiceClient from "../services/TopicsServiceClient";
-import LessonListItem from '../components/LessonListItem';
+import TopicServiceClient from "../services/TopicServiceClient";
+import TopicListItem from '../components/TopicListItem';
 import '../../node_modules/bootstrap/dist/css/bootstrap.css';
 import '../../node_modules/font-awesome/css/font-awesome.min.css';
 import {BrowserRouter as Router, Route} from 'react-router-dom'
 import ModuleEditor from "./ModuleEditor";
-
-export default class TopicList
+import '../../node_modules/bootstrap/dist/css/bootstrap.css';
+import Radium from 'radium';
+class TopicList
     extends React.Component {
     constructor(props) {
         super(props);
@@ -41,7 +42,7 @@ export default class TopicList
         this.setState({topics: topics})
     }
 
-    CreateTopics() {
+    CreateTopic() {
         this.topicService
             .CreateTopics(
 
@@ -71,13 +72,21 @@ export default class TopicList
 
         this.setCourseId(this.props.courseId);
         this.setModuleId(this.props.moduleId);
-        this.setModuleId(this.props.lessonId);
+        this.setLessonId(this.props.lessonId);
     }
 
     componentWillReceiveProps(newProps) {
-        this.setCourseId(newProps.courseId);
-        this.setModuleId(newProps.moduleId);
-        this.setModuleId(newProps.lessonId);
+        // if(this.props.courseId!=newProps.courseId){
+        //     this.setCourseId(newProps.courseId);
+        // }
+        // if(this.props.moduleId!=newProps.moduleId){
+        //     this.setModuleId(newProps.moduleId);
+        // }
+        if(this.props.lessonId!=newProps.lessonId){
+            this.setLessonId(newProps.lessonId);
+            this.findAllTopicsForLesson(newProps.lessonId);
+        }
+
 
 
     }
@@ -96,7 +105,7 @@ export default class TopicList
 
     titleChanged(event) {
         console.log(event.target.value);
-        this.setState({topics: {title: event.target.value}});
+        this.setState({topic: {title: event.target.value}});
 
 
     }
@@ -117,8 +126,9 @@ export default class TopicList
                     title={topic.title}
                     key={topic.id}
                     courseId={this.props.courseId}
+                    lessonId={this.props.lessonId}
                     delete={this.deleteTopic}
-                    Topic={topic}
+                    topic={topic}
 
                 />
             });
@@ -129,30 +139,31 @@ export default class TopicList
     render() {
         return (
             <div>
-                <div>
-                    <input onChange={this.titleChanged}
-                           className="form-control"
-                           id="titleFld"
-                           placeholder="Topic one"/>
 
-                    <button onClick={this.CreateTopics}
-                            className="btn btn-primary">Add
-
-                    </button>
-
-
-                </div>
 
                 <ul className="nav nav-tabs">
                     {this.renderListOfTopics()}
+                    <div>
+                        <form className="form-inline">
+                        <input onChange={this.titleChanged}
 
+                               className="form-control mr-sm-2"
+                               id="titleFld"
+                               placeholder="Topic"/>
+
+                        <button onClick={this.CreateTopic}
+                                className="btn btn-outline-success my-2 my-sm-0" >Add
+
+                        </button>
+
+</form>
+                    </div>
 
                 </ul>
-                {/*<Route path="/course/:courseId/module/:moduleId/lesson/:lessonId"*/}
-                                  {/*component={TopicList}>*/}
-            {/*</Route>*/}
+
             </div>
 
         );
     }
 }
+export default Radium(TopicList);

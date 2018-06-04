@@ -2,8 +2,10 @@ import React from 'react';
 import LessonTabs from "./LessonTabs";
 import {BrowserRouter as Router, Route} from 'react-router-dom'
 import ModuleServiceClient from "../services/ModuleServiceClient";
+import '../../node_modules/bootstrap/dist/css/bootstrap.css';
+import Radium from 'radium';
 
-export default class ModuleEditor
+class ModuleEditor
     extends React.Component {
     constructor(props) {
         super(props);
@@ -53,11 +55,14 @@ export default class ModuleEditor
     }
 
     componentWillReceiveProps(newProps) {
-        this.setCourseId(
-            newProps.match.params.courseId);
-
-        this.setModuleId(
-            newProps.match.params.moduleId);
+        // if(this.props.courseId!=newProps.courseId) {
+        //     this.setCourseId(
+        //         newProps.match.params.courseId);
+        // }
+        // if(this.props.moduleId!=newProps.moduleId) {
+            this.setModuleId(
+                newProps.match.params.moduleId);
+        // }
     }
 
 
@@ -65,21 +70,17 @@ export default class ModuleEditor
         return (
 
             <div>
-                {/*<div>*/}
-
-                {/*</div>*/}
-                {/*<div className="col-3">*/}
-                {/*<Route path="/course/:courseId/module/:moduleId/lesson/:lessonId" component={LessonTabs}/>*/}
 
 
-                {/*</div>*/}
-                <div>
-                    <h5>{this.state.title}</h5>
+
+
+
+                    <nav style={{fontSize:'20px',backgroundColor:'#f1f1f1'}}> {this.state.title}</nav>
                     <LessonTabs courseId={this.state.courseId}
                                 moduleId={this.state.moduleId}
                     />
 
-                </div>
+
             </div>
 
 
@@ -88,3 +89,4 @@ export default class ModuleEditor
 
 
 }
+export default Radium(ModuleEditor);

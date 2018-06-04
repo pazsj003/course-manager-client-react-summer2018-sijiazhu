@@ -1,30 +1,30 @@
-
-
 const TOPIC_API_URL = 'http://localhost:8080/api/topic';
 const TOPIC_API_FIND = 'http://localhost:8080/api/course/courseID/module/module_ID/lesson/lesson_Id/topic';
 const TOPIC_API_DEL = 'http://localhost:8080/api/topic/topicId';
 let _singleton = Symbol();
 
-export default  class TopicServiceClient {
+export default class TopicServiceClient {
     constructor(singletonToken) {
         if (_singleton !== singletonToken)
             throw new Error('Cannot instantiate directly.');
     }
+
     static get instance() {
-        if(!this[_singleton])
+        if (!this[_singleton])
             this[_singleton] = new TopicServiceClient(_singleton);
         return this[_singleton]
     }
 
-    findAllTopics(){
+    findAllTopics() {
 
         return fetch(TOPIC_API_URL)
-            .then(function(response){
+            .then(function (response) {
                 return response.json();
             });
 
     }
-    findAllTopicsForLesson(lessonID){
+
+    findAllTopicsForLesson(lessonID) {
         return fetch(
             TOPIC_API_FIND
                 .replace('lesson_Id', lessonID))
@@ -32,31 +32,36 @@ export default  class TopicServiceClient {
                 return response.json();
             })
     }
-    CreateTopics(lessonID,topic){
+
+    CreateTopics(lessonID, topic) {
         return fetch(TOPIC_API_FIND.replace('lesson_Id', lessonID),
-            {   body: JSON.stringify(topic),
-                headers: { 'Content-Type': 'application/json' },
+            {
+                body: JSON.stringify(topic),
+                headers: {'Content-Type': 'application/json'},
                 method: 'POST'
-            }).then(function (response)
-        { return response.json(); })
+            }).then(function (response) {
+            return response.json();
+        })
     }
-    deleteTopic(lessonID){
+
+    deleteTopic(lessonID) {
         return fetch(TOPIC_API_DEL.replace
         ('lessonId', lessonID), {
             method: 'delete'
         })
     }
-    findTopicsById(topicId){
+
+    findTopicsById(topicId) {
         return fetch(TOPIC_API_URL + '/' + topicId)
             .then(function (response) {
                 return response.json()
 
             })
     }
-    updateTopics(){
+
+    updateTopics() {
 
     }
-
 
 
 }

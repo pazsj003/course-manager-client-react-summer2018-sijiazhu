@@ -4,6 +4,9 @@ import CourseRow from "../components/CourseRow";
 import CourseEditor from "./CourseEditor";
 import ModuleList from "./ModuleList"
 import {BrowserRouter as Router, Route,Link} from 'react-router-dom'
+import { Switch} from 'react-router'
+import '../../node_modules/bootstrap/dist/css/bootstrap.css';
+import Radium from 'radium';
 
 class CourseList extends React.Component {
     constructor(props) {
@@ -91,7 +94,7 @@ class CourseList extends React.Component {
 
     render() {
         return (
-
+            <Switch>
             <div>
                 <h5>Course List</h5>
              <div>
@@ -131,10 +134,10 @@ class CourseList extends React.Component {
 
             </div>
 
-
+            </Switch>
 
         )
     }
 }
 
-export default CourseList;
+export default Radium(CourseList);
