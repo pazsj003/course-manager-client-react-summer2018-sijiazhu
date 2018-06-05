@@ -107,7 +107,7 @@ const styles = {
         color: 'black',
         width: '50px',
         height: '50px',
-        fontSize: '50px',
+        fontSize: '30px',
         fontFamily: 'Lucida Console',
     },
 
