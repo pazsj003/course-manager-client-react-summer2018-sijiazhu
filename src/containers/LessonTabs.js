@@ -132,6 +132,7 @@ class LessonTabs
 
     render() {
         return (
+            <Switch>
 
             <div>
 
@@ -155,11 +156,14 @@ class LessonTabs
                         </form>
                     </li>
                 </ul>
-                <Route exact path="/course/:courseId/module/:moduleId/lesson/:lessonId"
+
+
+                <Route path="/course/:courseId/module/:moduleId/lesson/:lessonId"
                        component={LessonEditor}>
                 </Route>
 
             </div>
+            </Switch>
 
 
         );

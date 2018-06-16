@@ -21,7 +21,8 @@ class LessonEditor
 
         this.lessonService = LessonServiceClient.instance;
         this.state = {
-            courseId: '', moduleId: '',
+            courseId: '',
+            moduleId: '',
             lessonId: '',
             title: '',
         };
@@ -70,6 +71,7 @@ class LessonEditor
 
 
     render() {
+
         return (
 
             <div>

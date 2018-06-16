@@ -7,7 +7,9 @@ import {BrowserRouter as Router, Route} from 'react-router-dom'
 import ModuleEditor from "./ModuleEditor";
 import '../../node_modules/bootstrap/dist/css/bootstrap.css';
 import Radium from 'radium';
-
+import LessonEditor from "./LessonEditor";
+import {Switch} from 'react-router'
+import TopicEditor from "./TopicEditor"
 class TopicList
     extends React.Component {
     constructor(props) {
@@ -117,7 +119,7 @@ class TopicList
         let Topics = this.state.topics
             .map((topic) => {
                 return <TopicListItem
-                    moduleId={this.state.moduleId}
+                    moduleId={this.props.moduleId}
                     title={topic.title}
                     key={topic.id}
                     courseId={this.props.courseId}
@@ -133,6 +135,7 @@ class TopicList
 
     render() {
         return (
+            <Switch>
             <div>
 
 
@@ -156,8 +159,12 @@ class TopicList
 
                 </ul>
 
-            </div>
+                <Route  path="/course/:courseId/module/:moduleId/lesson/:lessonId/topic/:topicId"
+                       component={TopicEditor}>
+                </Route>
 
+            </div>
+            </Switch>
         );
     }
 }

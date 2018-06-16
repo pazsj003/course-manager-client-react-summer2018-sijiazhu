@@ -6,7 +6,7 @@ import CourseServiceClient from "../services/CourseServiceClient";
 import '../../node_modules/bootstrap/dist/css/bootstrap.css';
 import Radium from 'radium';
 
-const Course_API_URL = 'https://course-manager-react-sijiazhu.herokuapp.com/courses';
+const Course_API_URL = 'http://localhost:3000/courses';
 
 class CourseEditor
     extends React.Component {
