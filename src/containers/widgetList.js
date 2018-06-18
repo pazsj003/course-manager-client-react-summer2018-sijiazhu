@@ -2,39 +2,93 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import * as actions from "../actions"
 import WidgetContainer from '../components/widget'
+import '../../node_modules/bootstrap/dist/css/bootstrap.css';
+import '../../node_modules/css-toggle-switch/dist/toggle-switch.css';
 
-
+// import '../../node_modules/css-toggle-switch/src/themes/material.scss';
 class WidgetList extends Component {
     constructor(props) {
         super(props)
         this.props.findAllWidgets()
     }
+
     render() {
-        return(
-            <div>
-                <h1>Widget List {this.props.widgets.length}</h1>
+        return (
+            <div className=" p-4">
+                <br/>
 
-                <button hidden={this.props.previewMode} onClick={this.props.save}>
-                    Save
-                </button>
-                <button onClick={this.props.preview}>
-                    Preview
-                </button>
+                <div className="float-right ">
+                    <ul className="nav  ">
 
-                <ul>
-                    {this.props.widgets.map(widget => (
-                        <WidgetContainer widget={widget}
-                                         preview={this.props.previewMode}
-                                         key={widget.id}/>
-                    ))}
-                </ul>
-                <button onClick={this.props.addWidget}>Add widget
+
+                        <li>
+                            <button className="btn btn-outline-success  "
+                                    style={{position: 'relative', right: '30px'}}
+                                    hidden={this.props.previewMode} onClick={this.props.save}>
+                                Save
+                            </button>
+                        </li>
+
+
+                        <li>
+                            <label className="switch-light switch-material  ">
+                                <input type="checkbox"
+                                       onClick={this.props.preview}/>
+
+                                <strong className="d-inline-block" style={{
+                                    position: 'relative',
+                                    right: '15px'
+                                }}>
+                                    Preview
+                                </strong>
+
+                                <span className="d-inline-block"
+                                      style={{
+                                          position: 'relative',
+                                          top: '5px'
+                                      }}>
+
+                                    <a/>
+                                </span>
+                            </label>
+
+                        </li>
+
+
+                    </ul>
+
+                </div>
+
+                <br/>
+                <br/>
+                <br/>
+
+                <div className="">
+                    < ul className="list-unstyled">
+                        {this.props.widgets.map(widget => (
+                            <WidgetContainer widget={widget}
+                                             preview={this.props.previewMode}
+                                             key={widget.id}/>
+                        ))
+                        }
+                    </ul>
+                </div>
+                <br/>
+
+                <button className="float-right btn btn-outline-danger fa fa-plus-circle"
+                        onClick={this.props.addWidget}>
                 </button>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+
+
             </div>
         )
     }
 }
-
 
 
 const stateToPropertiesMapper = (state) => ({

@@ -16,7 +16,7 @@ class TopicEditor
     extends React.Component {
     constructor(props) {
         super(props);
-        console.log("helloTopicEditorConstructor")
+
         this.setCourseId =
             this.setCourseId.bind(this);
         this.setModuleId =

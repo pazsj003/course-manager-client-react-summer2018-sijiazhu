@@ -13,7 +13,7 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
         case constants.HEADING_TEXT_CHANGED:
             return {
                 widgets: state.widgets.map(widget => {
-                    if(widget.id === action.id) {
+                    if (widget.id === action.id) {
                         widget.text = action.text
                     }
                     return Object.assign({}, widget)
@@ -23,16 +23,28 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
         case constants.HEADING_SIZE_CHANGED:
             return {
                 widgets: state.widgets.map(widget => {
-                    if(widget.id === action.id) {
+                    if (widget.id === action.id) {
                         widget.size = action.size
                     }
                     return Object.assign({}, widget)
                 })
             }
+
+        case constants.WIDGET_NAME_CHANGED:
+            return {
+                widgets: state.widgets.map(widget => {
+                    if (widget.id === action.id) {
+                        widget.name = action.name
+                    }
+                    return Object.assign({}, widget)
+                })
+            }
+
+
         case constants.PARAGRAPH_TEXT_CHANGED:
             return {
                 widgets: state.widgets.map(widget => {
-                    if(widget.id === action.id) {
+                    if (widget.id === action.id) {
                         widget.text = action.text
                     }
                     return Object.assign({}, widget)
@@ -40,11 +52,10 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
             }
 
 
-
         case constants.LIST_TEXT_CHANGED:
             return {
                 widgets: state.widgets.map(widget => {
-                    if(widget.id === action.id) {
+                    if (widget.id === action.id) {
                         widget.listItems = action.listItems
                     }
                     return Object.assign({}, widget)
@@ -54,7 +65,7 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
         case constants.LIST_ORDER_CHANGED:
             return {
                 widgets: state.widgets.map(widget => {
-                    if(widget.id === action.id) {
+                    if (widget.id === action.id) {
                         widget.listType = action.listType
                     }
                     return Object.assign({}, widget)
@@ -63,10 +74,13 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
 
 
         case constants.IMAGE_TEXT_CHANGED:
+
             return {
+
                 widgets: state.widgets.map(widget => {
-                    if(widget.id === action.id) {
-                        widget.name = action.name
+
+                    if (widget.id === action.id) {
+                        widget.text = action.text
                     }
                     return Object.assign({}, widget)
                 })
@@ -75,7 +89,7 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
         case constants.IMAGE_URL_CHANGED:
             return {
                 widgets: state.widgets.map(widget => {
-                    if(widget.id === action.id) {
+                    if (widget.id === action.id) {
                         widget.src = action.src
                     }
                     return Object.assign({}, widget)
@@ -84,8 +98,8 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
         case constants.LINK_TEXT_CHANGED:
             return {
                 widgets: state.widgets.map(widget => {
-                    if(widget.id === action.id) {
-                        widget.name = action.name
+                    if (widget.id === action.id) {
+                        widget.text = action.text
                     }
                     return Object.assign({}, widget)
                 })
@@ -94,7 +108,7 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
         case constants.LINK_URL_CHANGED:
             return {
                 widgets: state.widgets.map(widget => {
-                    if(widget.id === action.id) {
+                    if (widget.id === action.id) {
                         widget.hrefLink = action.hrefLink
                     }
                     return Object.assign({}, widget)
@@ -102,11 +116,55 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
             }
 
 
+        case constants.MOVE_UP:
+
+            newState = {
+                widgets: state.widgets.map(widget => {
+                    if (widget.orderList === action.orderList - 1) {
+                        widget.orderList = action.orderList
+
+                    }
+                    if (widget.id === action.id) {
+                        if (action.orderList !== 1) {
+                            widget.orderList = action.orderList - 1
+
+                        }
+                    }
+                    return Object.assign({}, widget)
+                }),
+                preview: state.preview
+            };
+            newState.widgets.sort((a, b) => a.orderList - b.orderList);
+            return newState;
+
+        case constants.MOVE_DOWN:
+
+            newState = {
+                widgets: state.widgets.map(widget => {
+                    if (widget.orderList === action.orderList + 1) {
+                        widget.orderList = action.orderList
+
+                    }
+                    if (widget.id === action.id) {
+
+                        if (action.orderList !== state.widgets.length) {
+                            widget.orderList = action.orderList + 1
+
+                        }
+                    }
+                    return Object.assign({}, widget)
+                }),
+                preview: state.preview
+            };
+            newState.widgets.sort((a, b) => a.orderList - b.orderList);
+            return newState;
+
+
         case constants.SELECT_WIDGET_TYPE:
-            console.log(action);
+
             let newState = {
                 widgets: state.widgets.filter((widget) => {
-                    if(widget.id === action.id) {
+                    if (widget.id === action.id) {
                         widget.widgetType = action.widgetType
                     }
                     return true;
@@ -121,7 +179,8 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
                 method: 'post',
                 body: JSON.stringify(state.widgets),
                 headers: {
-                    'content-type': 'application/json'}
+                    'content-type': 'application/json'
+                }
             })
 
 
@@ -130,7 +189,9 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
         case constants.FIND_ALL_WIDGETS:
             newState = Object.assign({}, state)
             newState.widgets = action.widgets
+            newState.widgets.sort((a, b) => a.orderList - b.orderList);
             return newState
+
         case constants.DELETE_WIDGET:
             return {
                 widgets: state.widgets.filter(widget => (
@@ -143,14 +204,15 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
                     ...state.widgets,
                     {
                         id: state.widgets.length + 1,
-                        text: 'New Widget',
+                        text: '',
                         widgetType: 'Paragraph',
                         size: '2',
-                        hrefLink:'' ,
-                        src:'',
-                        listType:'unordered',
-                        listItems:'',
-                        name:''
+                        hrefLink: '',
+                        src: '',
+                        listType: 'unordered',
+                        listItems: '',
+                        name: 'widget name',
+                        orderList: state.widgets.length + 1,
 
                     }
                 ]

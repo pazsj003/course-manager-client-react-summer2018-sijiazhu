@@ -135,9 +135,11 @@ class CourseList extends React.Component {
 
 
                         <ul className="nav nav-tabs ">
+
                             <li>
                                 <th>Title</th>
                             </li>
+
                             <li style={{paddingLeft: '447px'}}>
 
                                 <form className="form-inline float-right ">

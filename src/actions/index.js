@@ -23,6 +23,14 @@ export const paragraphTextChanged = (dispatch, widgetId, newText) => (
     })
 )
 
+export const widgetNameChanged = (dispatch, widgetId, newName) => (
+    dispatch({
+        type: constants.WIDGET_NAME_CHANGED,
+        id: widgetId,
+        name: newName
+    })
+)
+
 
 export const listTextChanged = (dispatch, widgetId, newText) => (
     dispatch({
@@ -42,7 +50,7 @@ export const imageTextChanged = (dispatch, widgetId, newText) => (
     dispatch({
         type: constants.IMAGE_TEXT_CHANGED,
         id: widgetId,
-        name: newText
+        text: newText
     })
 )
 export const imageURLChanged = (dispatch, widgetId, newURL) => (
@@ -57,7 +65,7 @@ export const linkTextChanged = (dispatch, widgetId, newText) => (
     dispatch({
         type: constants.LINK_TEXT_CHANGED,
         id: widgetId,
-        name: newText
+        text: newText
     })
 )
 export const linkURLChanged = (dispatch, widgetId, newURL) => (
@@ -67,8 +75,6 @@ export const linkURLChanged = (dispatch, widgetId, newURL) => (
         hrefLink: newURL
     })
 )
-
-
 
 
 export const findAllWidgets = dispatch => {
@@ -88,3 +94,22 @@ export const save = dispatch => (
 export const preview = dispatch => (
     dispatch({type: constants.PREVIEW})
 )
+
+export const moveUp = (widget) => {
+    return {
+        type: constants.MOVE_UP,
+        widget: widget,
+        id: widget.id,
+        orderList: widget.orderList
+    }
+}
+
+export const moveDown = (widget) => {
+    return {
+        type: constants.MOVE_DOWN,
+        widget: widget,
+        id: widget.id,
+        orderList: widget.orderList
+    }
+}
+
