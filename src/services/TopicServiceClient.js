@@ -44,9 +44,9 @@ export default class TopicServiceClient {
         })
     }
 
-    deleteTopic(lessonID) {
+    deleteTopic(topicID) {
         return fetch(TOPIC_API_DEL.replace
-        ('lessonId', lessonID), {
+        ('topicId', topicID), {
             method: 'delete'
         })
     }

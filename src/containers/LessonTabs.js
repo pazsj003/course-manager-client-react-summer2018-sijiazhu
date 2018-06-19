@@ -132,7 +132,7 @@ class LessonTabs
 
     render() {
         return (
-            <Switch>
+
 
             <div>
 
@@ -163,7 +163,7 @@ class LessonTabs
                 </Route>
 
             </div>
-            </Switch>
+
 
 
         );

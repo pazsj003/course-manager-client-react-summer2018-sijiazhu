@@ -85,11 +85,25 @@ export const findAllWidgets = dispatch => {
             widgets: widgets
         }))
 }
+
+export const findAllWidgetsForTopic = (dispatch,topicId) => {
+    fetch(('http://localhost:8080/api/topic/topicID/widget').replace('topicID', topicId))
+        .then(response => (response.json()))
+        .then(widgets => dispatch({
+            type: constants.FIND_ALL_WIDGETS_FOR_TOPIC,
+            widgets: widgets
+        }))
+}
+
+
 export const addWidget = dispatch => (
     dispatch({type: constants.ADD_WIDGET})
 )
-export const save = dispatch => (
-    dispatch({type: constants.SAVE})
+export const save = (dispatch,topicId )=> (
+    console.log("topicId in action "+topicId),
+    dispatch({type: constants.SAVE,
+        topicId:topicId
+    })
 )
 export const preview = dispatch => (
     dispatch({type: constants.PREVIEW})

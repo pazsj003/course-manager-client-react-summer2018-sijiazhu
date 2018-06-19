@@ -95,7 +95,12 @@ class TopicEditor
             <div>
 
                 <Provider store={this.store}>
-                    <WidgetListAPP/>
+                    <WidgetListAPP courseId={ this.props.match.params.courseId}
+                                   moduleId={this.props.match.params.moduleId}
+                                   lessonId={this.props.match.params.lessonId}
+                                   topicId={this.props.match.params.topicId}
+
+                    />
                 </Provider>
 
 

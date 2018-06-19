@@ -72,10 +72,10 @@ class LessonEditor
 
     render() {
 
+
         return (
 
             <div>
-
 
                 <div>
 

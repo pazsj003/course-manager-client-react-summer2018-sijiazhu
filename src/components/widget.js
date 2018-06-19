@@ -15,7 +15,7 @@ const Heading = ({widget, preview, headingTextChanged, headingSizeChanged, widge
         <div>
             <div hidden={preview}>
                 <h2> Heading widget</h2>
-                <label For="headText"/>
+                <label htmlFor="headText"/>
                 <input className="form-control"
                        id="headText"
                        onChange={() => headingTextChanged(widget.id, inputElem.value)}
@@ -24,16 +24,19 @@ const Heading = ({widget, preview, headingTextChanged, headingSizeChanged, widge
 
                        ref={node => inputElem = node}/>
                 <br/>
-                <select className="form-control"
-                        onChange={() => headingSizeChanged(widget.id, selectElem.value)}
-                        value={widget.size}
-                        ref={node => selectElem = node}>
+                <label htmlFor="headSize"/>
+                <select
+                    id="headSize"
+                    className="form-control"
+                    onChange={() => headingSizeChanged(widget.id, selectElem.value)}
+                    value={widget.size}
+                    ref={node => selectElem = node}>
                     <option value="1">Heading 1</option>
                     <option value="2">Heading 2</option>
                     <option value="3">Heading 3</option>
                 </select>
 
-                <label For="headName"/>
+                <label htmlFor="headName"/>
                 <input
                     id="headName"
                     className="form-control"
@@ -74,7 +77,7 @@ const Paragraph = ({widget, preview, paragraphTextChanged, widgetNameChanged}) =
         <div>
             <div hidden={preview}>
                 <h2> Paragraph widget</h2>
-                <label For="paragraphText"/>
+                <label htmlFor="paragraphText"/>
                 <textarea className="form-control" rows="5"
                           id="paragraphText"
                           onChange={() => paragraphTextChanged(widget.id, inputElem.value)}
@@ -82,7 +85,7 @@ const Paragraph = ({widget, preview, paragraphTextChanged, widgetNameChanged}) =
                           value={widget.text}
                           ref={node => inputElem = node}/>
 
-                <label For="paragraphName"/>
+                <label htmlFor="paragraphName"/>
 
                 <input
                     id="paragraphName"
@@ -126,7 +129,7 @@ const List = ({widget, preview, listTextChanged, listOrderChanged, widgetNameCha
         <div>
             <div hidden={preview}>
                 <h2> List widget</h2>
-                <label For="listItem"/>
+                <label htmlFor="listItem"/>
                 <textarea className="form-control" rows="3"
                           id="listItem"
                           onChange={() => listTextChanged(widget.id, inputElem.value)}
@@ -135,8 +138,9 @@ const List = ({widget, preview, listTextChanged, listOrderChanged, widgetNameCha
                           ref={node => inputElem = node}/>
 
                 <br/>
-
-                <select className="form-control"
+                <label htmlFor="listType"/>
+                <select id="listType"
+                        className="form-control"
                         onChange={() => listOrderChanged(widget.id, selectElem.value)}
                         value={widget.listType}
                         ref={node => selectElem = node}>
@@ -146,7 +150,7 @@ const List = ({widget, preview, listTextChanged, listOrderChanged, widgetNameCha
                 </select>
 
 
-                <label For="listName"/>
+                <label htmlFor="listName"/>
                 <input id="listName"
                        className="form-control"
                        onChange={() => widgetNameChanged(widget.id, inputName.value)}
@@ -196,7 +200,7 @@ const Image = ({widget, preview, imageTextChanged, imageURLChanged, widgetNameCh
         <div>
             <div hidden={preview}>
                 <h2> Image widget</h2>
-                <label for="ImageURL"/>
+                <label htmlFor="ImageURL"/>
                 <input className="form-control"
                        id="ImageURL"
                        onChange={() => imageURLChanged(widget.id, inputURLElem.value)}
@@ -205,7 +209,7 @@ const Image = ({widget, preview, imageTextChanged, imageURLChanged, widgetNameCh
                        ref={node => inputURLElem = node}/>
 
 
-                <label For="ImageText"/>
+                <label htmlFor="ImageText"/>
                 <input className="form-control"
                        id="ImageText"
                        onChange={() => imageTextChanged(widget.id, inputElem.value)}
@@ -213,8 +217,9 @@ const Image = ({widget, preview, imageTextChanged, imageURLChanged, widgetNameCh
                        value={widget.text}
                        ref={node => inputElem = node}/>
                 <br/>
-
-                <input className="form-control"
+                <label htmlFor="ImageName"/>
+                <input id="ImageName"
+                       className="form-control"
                        onChange={() => widgetNameChanged(widget.id, inputName.value)}
                        value={widget.name}
                        ref={node => inputName = node}/>
@@ -224,7 +229,7 @@ const Image = ({widget, preview, imageTextChanged, imageURLChanged, widgetNameCh
             </div>
 
             <p>{widget.text}</p>
-            <img lassName="form-control"
+            <img className="form-control"
                  src={widget.src}
             />
 
@@ -254,7 +259,7 @@ const Link = ({widget, preview, linkTextChanged, linkURLChanged, widgetNameChang
         <div>
             <div hidden={preview}>
                 <h2> Link widget</h2>
-                <label For="linkURL"/>
+                <label htmlFor="linkURL"/>
                 <input className="form-control"
                        id="linkURL"
                        onChange={() => linkURLChanged(widget.id, inputURLElem.value)}
@@ -262,15 +267,15 @@ const Link = ({widget, preview, linkTextChanged, linkURLChanged, widgetNameChang
                        value={widget.hrefLink}
                        ref={node => inputURLElem = node}/>
 
-                <label For="linkText"/>
+                <label htmlFor="linkText"/>
                 <input className="form-control"
                        id="linkText"
                        onChange={() => linkTextChanged(widget.id, inputElem.value)}
                        placeholder="Link Text"
                        value={widget.text}
                        ref={node => inputElem = node}/>
-              
-                <label For="linkName"/>
+
+                <label htmlFor="linkName"/>
                 <input id="linkName"
                        className="form-control"
                        onChange={() => widgetNameChanged(widget.id, inputName.value)}

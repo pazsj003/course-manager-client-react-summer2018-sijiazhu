@@ -171,22 +171,32 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
                 })
             }
             return JSON.parse(JSON.stringify(newState))
-
+        // fetch('http://localhost:8080/api/widget/save', {
         case constants.SAVE:
-
-
-            fetch('http://localhost:8080/api/widget/save', {
-                method: 'post',
+            console.log("topicId in reducer "+action.topicId),
+            fetch(('http://localhost:8080/api/topic/topic_Id/widget')
+                .replace('topic_Id', action.topicId),{
+                method: 'POST',
                 body: JSON.stringify(state.widgets),
                 headers: {
-                    'content-type': 'application/json'
+                    'Content-Type': 'application/json'
                 }
-            })
+
+            });
+
+
 
 
             return state
 
         case constants.FIND_ALL_WIDGETS:
+            newState = Object.assign({}, state)
+            newState.widgets = action.widgets
+            newState.widgets.sort((a, b) => a.orderList - b.orderList);
+            return newState
+
+
+        case constants.FIND_ALL_WIDGETS_FOR_TOPIC:
             newState = Object.assign({}, state)
             newState.widgets = action.widgets
             newState.widgets.sort((a, b) => a.orderList - b.orderList);

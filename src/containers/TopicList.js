@@ -64,7 +64,7 @@ class TopicList
             .deleteTopic(TopicsId)
             .then(() => {
                 this.findAllTopicsForLesson
-                (this.state.LessonId)
+                (this.state.lessonId)
             });
 
 
@@ -135,7 +135,7 @@ class TopicList
 
     render() {
         return (
-            <Switch>
+
             <div>
 
 
@@ -164,7 +164,7 @@ class TopicList
                 </Route>
 
             </div>
-            </Switch>
+
         );
     }
 }
