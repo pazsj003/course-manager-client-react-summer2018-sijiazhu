@@ -171,10 +171,10 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
                 })
             }
             return JSON.parse(JSON.stringify(newState))
-        // fetch('http://localhost:8080/api/widget/save', {
+
         case constants.SAVE:
             console.log("topicId in reducer "+action.topicId),
-            fetch(('http://localhost:8080/api/topic/topic_Id/widget')
+            fetch(('https://course-manager-react-sijiazhu.herokuapp.com/api/topic/topic_Id/widget')
                 .replace('topic_Id', action.topicId),{
                 method: 'POST',
                 body: JSON.stringify(state.widgets),
