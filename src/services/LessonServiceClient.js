@@ -1,8 +1,8 @@
 
 
-const LESSON_API_URL = 'https://course-manager-react-sijiazhu.herokuapp.com/api/lesson';
-const LESSON_API_FIND = 'https://course-manager-react-sijiazhu.herokuapp.com/api/course/courseID/module/module_ID/lesson';
-const LESSON_API_DEL = 'https://course-manager-react-sijiazhu.herokuapp.com/api/lesson/lessonId';
+const LESSON_API_URL = 'https://webdev-summerfull-2018.herokuapp.com/api/lesson';
+const LESSON_API_FIND = 'https://webdev-summerfull-2018.herokuapp.com/api/course/courseID/module/module_ID/lesson';
+const LESSON_API_DEL = 'https://webdev-summerfull-2018.herokuapp.com/api/lesson/lessonId';
 let _singleton = Symbol();
 
 export default  class LessonServiceClient {

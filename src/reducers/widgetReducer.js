@@ -174,7 +174,7 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
 
         case constants.SAVE:
             console.log("topicId in reducer "+action.topicId),
-            fetch(('https://course-manager-react-sijiazhu.herokuapp.com/api/topic/topic_Id/widget')
+            fetch(('https://webdev-summerfull-2018.herokuapp.com/api/topic/topic_Id/widget')
                 .replace('topic_Id', action.topicId),{
                 method: 'POST',
                 body: JSON.stringify(state.widgets),

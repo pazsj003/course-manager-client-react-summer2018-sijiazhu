@@ -8,7 +8,7 @@ import {Switch} from 'react-router'
 import '../../node_modules/bootstrap/dist/css/bootstrap.css';
 import Radium from 'radium';
 
-const Course_API_URL = 'http://localhost:3000/courses';
+const Course_API_URL = 'https://course-manager-react-sijiazhu.herokuapp.com/courses';
 
 class CourseList extends React.Component {
     constructor(props) {

@@ -78,7 +78,7 @@ export const linkURLChanged = (dispatch, widgetId, newURL) => (
 
 
 export const findAllWidgets = dispatch => {
-    fetch('https://course-manager-react-sijiazhu.herokuapp.com/api/widget')
+    fetch('https://webdev-summerfull-2018.herokuapp.com/api/widget')
         .then(response => (response.json()))
         .then(widgets => dispatch({
             type: constants.FIND_ALL_WIDGETS,
@@ -87,7 +87,7 @@ export const findAllWidgets = dispatch => {
 }
 
 export const findAllWidgetsForTopic = (dispatch,topicId) => {
-    fetch(('https://course-manager-react-sijiazhu.herokuapp.com/api/topic/topicID/widget').replace('topicID', topicId))
+    fetch(('https://webdev-summerfull-2018.herokuapp.com/api/topic/topicID/widget').replace('topicID', topicId))
         .then(response => (response.json()))
         .then(widgets => dispatch({
             type: constants.FIND_ALL_WIDGETS_FOR_TOPIC,
